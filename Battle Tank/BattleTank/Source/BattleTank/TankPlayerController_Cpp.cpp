@@ -18,7 +18,6 @@ void ATankPlayerController_Cpp::BeginPlay()
 	
 }
 
-//if (!ATankPlayerController_Cpp) { return; }
 
 ATank* ATankPlayerController_Cpp::GetControlledTank() const
 {	
