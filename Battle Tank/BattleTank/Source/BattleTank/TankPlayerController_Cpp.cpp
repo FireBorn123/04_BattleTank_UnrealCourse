@@ -15,8 +15,26 @@ void ATankPlayerController_Cpp::BeginPlay()
 	{
 		UE_LOG(LogTemp, Warning, TEXT("PlayerController possessing: %s"), *(ControlledTank->GetName()));
 	}
-	
+
 }
+
+	
+void ATankPlayerController_Cpp::Tick(float DeltaTime) 
+{
+	Super::Tick(DeltaTime);
+    AimTowardsCrosshairs();
+
+	UE_LOG(LogTemp, Warning, TEXT("Player controller is ticking"));
+}
+
+void ATankPlayerController_Cpp::AimTowardsCrosshairs()
+{
+	if (!GetControlledTank()) { return; }
+
+	// Get world location through linetrace
+	// if it hiots the landscape
+		//Tell controlled tank to aim at this point
+};
 
 
 ATank* ATankPlayerController_Cpp::GetControlledTank() const
