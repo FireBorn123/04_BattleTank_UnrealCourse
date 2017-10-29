@@ -27,19 +27,32 @@ void ATankPlayerController_Cpp::Tick(float DeltaTime)
 	//  UE_LOG(LogTemp, Warning, TEXT("Player controller is ticking"));
 }
 
+ATank* ATankPlayerController_Cpp::GetControlledTank() const
+{
+	return Cast<ATank>(GetPawn());
+}
+
 void ATankPlayerController_Cpp::AimTowardsCrosshairs()
 {
 	if (!GetControlledTank()) { return; }
 
-	// Get world location through linetrace
-	// if it hiots the landscape
-		//Tell controlled tank to aim at this point
+	FVector HitLocation; // Out parameter
+	if (GetSightRayHitLocation(HitLocation)) //Has "side-effect", is going to raytrace
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Hit location: %s"), *HitLocation.ToString());
+			// Get world location through linetrace
+			// if it hits the landscape
+				//TODO Tell controlled tank to aim at this point
+	}
 };
 
 
-ATank* ATankPlayerController_Cpp::GetControlledTank() const
-{	
-	return Cast<ATank>(GetPawn());
+
+
+
+// Get world location of linetrace through crosshair, true if it hits landscape
+bool ATankPlayerController_Cpp::GetSightRayHitLocation(FVector& OutHitLocation) const
+{
+	OutHitLocation = FVector(1.0);
+	return true;
 }
-
-
