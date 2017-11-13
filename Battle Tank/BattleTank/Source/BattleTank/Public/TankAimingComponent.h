@@ -16,7 +16,8 @@ public:
 	// Sets default values for this component's properties
 	UTankAimingComponent();
 
-public:	
+	void SetBarrelReference(UStaticMeshComponent* BarrelToSet);
+
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
@@ -28,7 +29,7 @@ protected:
 
 
 private:
-	
+	UStaticMeshComponent* Barrel = nullptr;
 		
 	
 };
