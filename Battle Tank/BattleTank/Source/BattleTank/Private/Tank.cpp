@@ -43,7 +43,6 @@ void ATank::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 
 void ATank::AimAt(FVector OutHitLocation)
 {
-	TankAimingComponent->AimAt(OutHitLocation);
-	return;
+	TankAimingComponent->AimAt(OutHitLocation, LaunchSpeed);
 }
 
