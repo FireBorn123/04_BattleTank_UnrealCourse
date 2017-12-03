@@ -20,26 +20,6 @@ void UTankAimingComponent::SetBarrelReference(UStaticMeshComponent* BarrelToSet)
 
 }
 
-// Called when the game starts
-void UTankAimingComponent::BeginPlay()
-{
-	Super::BeginPlay();
-
-	// ...
-	
-}
-
-
-// Called every frame
-void UTankAimingComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
-{
-	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
-
-	// Log out what is aiming where
-
-
-}
-
 void UTankAimingComponent::AimAt(FVector OutHitLocation, float LaunchSpeed)
 {
 	if (!Barrel) { return; }
@@ -47,28 +27,36 @@ void UTankAimingComponent::AimAt(FVector OutHitLocation, float LaunchSpeed)
 	FVector OutLaunchVelocity;
 	FVector StartLocation = Barrel->GetSocketLocation(FName("ProjectileFirePoint"));
 
+//Calculate the outlaunch Velocity
+	bool bHaveAimSolution = UGameplayStatics::SuggestProjectileVelocity
+	(
+		this,
+		OutLaunchVelocity,
+		StartLocation,
+		OutHitLocation,
+		LaunchSpeed,
+		ESuggestProjVelocityTraceOption::DoNotTrace
+	);
 
-	if (UGameplayStatics::SuggestProjectileVelocity
-			(
-				this,
-				OutLaunchVelocity,
-				StartLocation,
-				OutHitLocation,
-				LaunchSpeed,
-				false,
-				0.0f,
-				ESuggestProjVelocityTraceOption::DoNotTrace
-			)
-		) //Calculate the outlaunch Velocity
+	
+	if(bHaveAimSolution)
 	{
 		auto AimDirection = OutLaunchVelocity.GetSafeNormal();
-		auto TankName = GetOwner()->GetName();
-		UE_LOG(LogTemp, Warning, TEXT("%s aiming at %s"), *TankName, *AimDirection.ToString());
+		MoveBarrelTowards(AimDirection);
 	}
 	// If no solution found, do nothing
+
+
 }
 
-//bool ProjectileVelocity(FVector OutLaunchVelocity)
-//{
-	
-//}
+void UTankAimingComponent::MoveBarrelTowards(FVector AimDirection)
+{
+	// Work out difference between current aim direction and AimDirection
+	auto BarrelRotator = Barrel->GetForwardVector().Rotation();
+	auto AimAsRotator = AimDirection.Rotation();
+	auto DeltaRotator = AimAsRotator - BarrelRotator;
+	UE_LOG(LogTemp, Warning, TEXT("AimAsRotator: %s"), *AimAsRotator.ToString());
+
+	// Move the berrel the right amount arounf the frame, as dictated by the movement of the crosshair
+	// Given a max elevation speed, and the frame time
+}		
