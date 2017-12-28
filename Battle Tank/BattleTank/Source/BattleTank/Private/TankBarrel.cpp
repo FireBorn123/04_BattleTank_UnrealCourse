@@ -4,11 +4,11 @@
 #include "TankBarrel.h"
 
 
-void UTankBarrel::Elevate(float DegreesPerSecond)
+void UTankBarrel::Elevate(float RelativeSpeed)
 {
 	// Move the berrel the right amount arounf the frame, as dictated by the movement of the crosshair
 	// Given a max elevation speed, and the frame time
-	UE_LOG(LogTemp, Warning, TEXT("Barrel->Elevate() called at speed %f"), DegreesPerSecond);
+
 
 }
 
