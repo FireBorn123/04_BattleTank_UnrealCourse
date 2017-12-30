@@ -29,6 +29,8 @@ void UTankAimingComponent::AimAt(FVector OutHitLocation, float LaunchSpeed)
 	FVector StartLocation = Barrel->GetSocketLocation(FName("ProjectileFirePoint"));
 
 //Calculate the outlaunch Velocity
+	TArray<AActor*> ActorIgnoreList;
+	ActorIgnoreList.Add(GetOwner());
 	bool bHaveAimSolution = UGameplayStatics::SuggestProjectileVelocity
 	(
 		this,
@@ -39,7 +41,10 @@ void UTankAimingComponent::AimAt(FVector OutHitLocation, float LaunchSpeed)
 		false,
 		0,
 		0,
-		ESuggestProjVelocityTraceOption::DoNotTrace // Parameter must be present to report bug
+		ESuggestProjVelocityTraceOption::DoNotTrace, // Parameter must be present to report bug
+		FCollisionResponseParams::DefaultResponseParam,
+		ActorIgnoreList,
+		false
 	);
 
 	
@@ -63,9 +68,12 @@ void UTankAimingComponent::AimAt(FVector OutHitLocation, float LaunchSpeed)
 void UTankAimingComponent::MoveBarrelTowards(FVector AimDirection)
 {
 	// Work out difference between current aim direction and AimDirection
+
 	auto BarrelRotator = Barrel->GetForwardVector().Rotation();
 	auto AimAsRotator = AimDirection.Rotation();
 	auto DeltaRotator = AimAsRotator - BarrelRotator;
+	
 
-	Barrel->Elevate(5); //TODO remove magic number
-}		
+
+	Barrel->Elevate(DeltaRotator.Pitch); //TODO remove magic number //1 equals 100% of its max speed
+}
