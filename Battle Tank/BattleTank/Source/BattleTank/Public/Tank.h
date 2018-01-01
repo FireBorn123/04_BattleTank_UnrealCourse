@@ -39,7 +39,7 @@ private:
 	ATank();
 
 	UPROPERTY(EditAnywhere, Category = Firing)
-	float LaunchSpeed = 100000; //TODO find reasonable default
+	float LaunchSpeed = 4000.0; 
 
 	
 	
