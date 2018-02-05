@@ -36,6 +36,7 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void FireProjectile();
 
+
 	
 protected:
 	UTankAimingComponent* TankAimingComponent = nullptr;
@@ -52,5 +53,9 @@ private:
 
 	//Local barrel reference for spawning projectiles
 	UTankBarrel* Barrel = nullptr;
+
+	UPROPERTY(EditAnywhere, Category = Firing)
+	float ReloadTimeInSeconds = 3;
 	
+	double LastTimeFired = 0;
 };

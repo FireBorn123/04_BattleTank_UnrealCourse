@@ -22,10 +22,6 @@ public:
 	
 	virtual void Tick(float DeltaTime) override;
 
-private:
-	ATank* GetControlledAITank() const;
+//private:
 
-	ATank* GetPlayerTank() const;
-	
-	void AimTowardsPlayer();
 };
