@@ -8,7 +8,7 @@ void UTankTracks::SetThrottle(float Throttle)
 {
 	//auto Time = GetWorld()->GetTimeSeconds();
 	auto Name = GetName();
-	UE_LOG(LogTemp, Warning, TEXT("%s throttle: %f"), *Name, Throttle);
+	UE_LOG(LogTemp, Warning, TEXT("%s throttle: %f"), *Name, Throttle); //Test
 
 	//TODO Clamp actual throttle value so that player can't overdrive (+1 and -1)
 
