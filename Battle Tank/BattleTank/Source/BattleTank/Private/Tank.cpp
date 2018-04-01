@@ -2,6 +2,7 @@
 
 #include "BattleTank.h"
 #include "TankAimingComponent.h"
+#include "TankMovementComponent.h"
 #include "TankBarrel.h"
 #include "Projectile.h"
 #include "Tank.h"
@@ -14,9 +15,11 @@ ATank::ATank()
 	PrimaryActorTick.bCanEverTick = false;
 
 	// No need to protect pointers as added at construction
+	
 	TankAimingComponent = CreateDefaultSubobject<UTankAimingComponent>(FName("Aiming Component"));
 	
-
+	// Addition of movement component to Tank, added at construction
+	TankMovementComponent = CreateDefaultSubobject<UTankMovementComponent>(FName("Movement Component"));
 }
 
 void ATank::SetBarrelReference(UTankBarrel* BarrelToSet)
