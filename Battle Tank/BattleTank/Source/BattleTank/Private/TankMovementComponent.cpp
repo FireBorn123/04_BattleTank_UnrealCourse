@@ -6,16 +6,13 @@
 
 void UTankMovementComponent::Initialize(UTankTracks* LeftTrackToSet, UTankTracks* RightTrackToSet)
 {
-	if (!LeftTrackToSet || !RightTrackToSet) { return; }
 	LeftTrack = LeftTrackToSet;
 	RightTrack = RightTrackToSet;
 }
 
 void UTankMovementComponent::IntendMoveForward(float Throw)
 {
-	//auto Time = GetWorld()->GetTimeSeconds();
-	UE_LOG(LogTemp, Warning, TEXT("Intend move forward throttle: %f"), Throw);
-
+	if (!LeftTrack || !RightTrack) { return; }
 	LeftTrack->SetThrottle(Throw);
 	RightTrack->SetThrottle(Throw);
 
@@ -23,3 +20,13 @@ void UTankMovementComponent::IntendMoveForward(float Throw)
 }
 
 
+void UTankMovementComponent::IntendTurnRight(float Throw)
+{
+	UE_LOG(LogTemp, Warning, TEXT("Intend to turn right: %f"), Throw);
+	
+	if (!LeftTrack || !RightTrack) { return; }
+	LeftTrack->SetThrottle(Throw);
+	RightTrack->SetThrottle(-Throw);
+
+	//TODO Prevent double turn speed due to dual control use
+}
