@@ -8,6 +8,7 @@
 
 // Forward declarations
 class ATank;
+class UTankMovementComponent;
 
 /**
  * 
@@ -22,6 +23,9 @@ public:
 	
 	virtual void Tick(float DeltaTime) override;
 
-//private:
+private:
+	//How close can the AI tank get
+	UPROPERTY(EditDefaultsOnly)
+	float AcceptanceRadius = 3000; //TODO, Check Radius is in cm
 
 };
