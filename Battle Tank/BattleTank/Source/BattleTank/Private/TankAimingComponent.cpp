@@ -30,7 +30,7 @@ void UTankAimingComponent::AimAt(FVector OutHitLocation, float LaunchSpeed)
 	FVector OutLaunchVelocity;
 	FVector StartLocation = Barrel->GetSocketLocation(FName("ProjectileFirePoint"));
 
-//Calculate the outlaunch Velocity
+	//Calculate the outlaunch Velocity
 	TArray<AActor*> ActorIgnoreList;
 	ActorIgnoreList.Add(GetOwner());
 	bool bHaveAimSolution = UGameplayStatics::SuggestProjectileVelocity
