@@ -27,8 +27,6 @@ class BATTLETANK_API UTankAimingComponent : public UActorComponent
 	GENERATED_BODY()
 
 public:	
-
-
 	void AimAt(FVector OutHitLocation, float LaunchSpeed);
 
 	UFUNCTION(BlueprintCallable, Category = "Setup")

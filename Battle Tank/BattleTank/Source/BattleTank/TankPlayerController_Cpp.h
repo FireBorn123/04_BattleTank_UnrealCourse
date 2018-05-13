@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+// Copyright Trevor Randall
 
 #pragma once
 
@@ -9,9 +9,10 @@
 
 // Forward declarations
 class ATank;
+class UTankAimingComponent;
 
 /**
- * 
+ * Responsible for helping player aim.
  */
 UCLASS()
 class BATTLETANK_API ATankPlayerController_Cpp : public APlayerController
@@ -25,6 +26,9 @@ public:
 protected:
 	UFUNCTION(BlueprintCallable, Category = "Setup")
 	ATank* GetControlledTank() const;
+
+	UFUNCTION(BlueprintImplementableEvent, Category = "Setup")
+	void FoundAimingComponent(UTankAimingComponent* AimCompRef); //Because of macro, do not need to implement
 
 private:
 	UPROPERTY(EditDefaultsOnly)
