@@ -9,7 +9,7 @@ void ATankPlayerController_Cpp::BeginPlay()
 {
 	Super::BeginPlay();
 	auto AimingComponent = GetControlledTank()->FindComponentByClass<UTankAimingComponent>();
-	if (AimingComponent)
+	if (ensure(AimingComponent))
 	{
 		FoundAimingComponent(AimingComponent);
 	}
@@ -35,10 +35,10 @@ ATank* ATankPlayerController_Cpp::GetControlledTank() const
 
 void ATankPlayerController_Cpp::AimTowardsCrosshairs()
 {
-	if (!GetControlledTank()) { return; }
+	if (!ensure(GetControlledTank())) { return; }
 
 	FVector OutHitLocation; // Out parameter
-	if (GetSightRayHitLocation(OutHitLocation)) //Has "side-effect", is going to raytrace
+	if (ensure(GetSightRayHitLocation(OutHitLocation))) //Has "side-effect", is going to raytrace
 	{
 		GetControlledTank()->AimAt(OutHitLocation);
 	}
@@ -54,7 +54,7 @@ bool ATankPlayerController_Cpp::GetSightRayHitLocation(FVector& OutHitLocation) 
 	auto ScreenPixelLocation = FVector2D(ViewportSizeX * CrossHairXLocation, ViewportSizeY * CrossHairYLocation); //Determines where the pixel is on the screen
 	
 	FVector LookDirection;
-	if (GetLookDirection(ScreenPixelLocation, LookDirection))
+	if (ensure(GetLookDirection(ScreenPixelLocation, LookDirection)))
 	{
 		// Line trace along the LookDirection and see what you hit (to a maximum range)
 		GetLookVectorHitLocation(LookDirection, OutHitLocation);
@@ -79,13 +79,13 @@ bool ATankPlayerController_Cpp::GetLookVectorHitLocation(FVector LookDirection, 
 	FHitResult HitResult;
 	auto StartLocation = PlayerCameraManager->GetCameraLocation();
 	auto EndLocation = StartLocation + (LookDirection * LineTraceRange);
-	if(GetWorld()->LineTraceSingleByChannel(
+	if(ensure(GetWorld()->LineTraceSingleByChannel(
 		HitResult,
 		StartLocation, 
 		EndLocation, 
 		ECollisionChannel::ECC_Visibility, 
 		FCollisionQueryParams::DefaultQueryParam,
-		FCollisionResponseParams::DefaultResponseParam))
+		FCollisionResponseParams::DefaultResponseParam)))
 	{
 		OutHitLocation = HitResult.Location;
 		return true;

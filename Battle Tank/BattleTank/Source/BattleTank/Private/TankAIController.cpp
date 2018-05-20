@@ -24,7 +24,7 @@ void ATankAIController::Tick(float DeltaTime)
 	}
 
 
-	if (!PlayerTank) { return; } else
+	if (!ensure(PlayerTank)) { return; } else
 	{	
 		// Move towards the player
 		MoveToActor(PlayerTank, AcceptanceRadius, true, true, false); 
