@@ -22,6 +22,8 @@ void ATank::BeginPlay()
 	Super::BeginPlay(); //Needed for BP BeginPlay to run
 	auto TankName = GetName();
 	UE_LOG(LogTemp, Warning, TEXT("%s 2700_TankBeginPlay"), *TankName)
+
+	TankAimingComponent = FindComponentByClass<UTankAimingComponent>();
 }
 
 void ATank::AimAt(FVector OutHitLocation)

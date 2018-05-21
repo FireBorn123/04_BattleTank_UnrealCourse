@@ -9,14 +9,8 @@ void ATankPlayerController_Cpp::BeginPlay()
 {
 	Super::BeginPlay();
 	auto AimingComponent = GetControlledTank()->FindComponentByClass<UTankAimingComponent>();
-	if (ensure(AimingComponent))
-	{
-		FoundAimingComponent(AimingComponent);
-	}
-	else
-	{
-		UE_LOG(LogTemp, Warning, TEXT("Player controller can not find aiming component at Begin Play"))
-	}
+	if (!ensure(AimingComponent)) { return; }
+	FoundAimingComponent(AimingComponent);
 }
 
 	
@@ -24,8 +18,6 @@ void ATankPlayerController_Cpp::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
     AimTowardsCrosshairs();
-
-	//  UE_LOG(LogTemp, Warning, TEXT("Player controller is ticking"));
 }
 
 ATank* ATankPlayerController_Cpp::GetControlledTank() const
