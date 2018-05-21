@@ -8,7 +8,6 @@
 
 // Forward declarations
 class ATank;
-class UTankMovementComponent;
 
 /**
  * 
