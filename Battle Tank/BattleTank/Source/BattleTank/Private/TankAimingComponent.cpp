@@ -22,7 +22,7 @@ void UTankAimingComponent::AimingInitalize(UTankBarrel* BarrelToSet, UTankTurret
 	Turret = TurretToSet;
 };
 
-void UTankAimingComponent::AimAt(FVector OutHitLocation, float LaunchSpeed)
+void UTankAimingComponent::AimAt(FVector OutHitLocation)
 {
 	if (!ensure(Barrel)) { return; }
 
@@ -78,3 +78,4 @@ void UTankAimingComponent::MoveBarrelTowards(FVector AimDirection)
 	Turret->RotateTurret(DeltaRotator.Yaw); //1 equals 100% of its max speed //Also works as Barrel and turret point in the same direction
 	Barrel->Elevate(DeltaRotator.Pitch); //1 equals 100% of its max speed
 }
+
