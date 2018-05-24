@@ -1,8 +1,6 @@
 // Copyright Trevor Randall
 
 #include "BattleTank.h"
-#include "TankBarrel.h"
-#include "Projectile.h"
 #include "Tank.h"
 
 
@@ -18,23 +16,3 @@ void ATank::BeginPlay()
 {
 	Super::BeginPlay(); //Needed for BP BeginPlay to run
 }
-
-void ATank::FireProjectile()
-{
-	if (!ensure(Barrel)) { return; }
-	bool isReloaded = (FPlatformTime::Seconds() - LastTimeFired) > ReloadTimeInSeconds;
-	if (isReloaded)
-	{
-		//Spawn a projectile at the socket location
-		auto Projectile = GetWorld()->SpawnActor<AProjectile>(
-				ProjectileBlueprint,
-				Barrel->GetSocketLocation(FName("ProjectileFirePoint")),
-				Barrel->GetSocketRotation(FName("ProjectileFirePoint")));
-
-		Projectile->LaunchProjectile(LaunchSpeed);
-		LastTimeFired = FPlatformTime::Seconds();
-	}
-
-
-
-};

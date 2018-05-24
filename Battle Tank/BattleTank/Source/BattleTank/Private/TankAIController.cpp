@@ -3,6 +3,7 @@
 #include "BattleTank.h"
 #include "TankAimingComponent.h"
 #include "TankAIController.h"
+
 // Depends on movement component via pathfinding system
 
 
@@ -32,6 +33,6 @@ void ATankAIController::Tick(float DeltaTime)
 	AimingComponent->AimAt (PlayerTank->GetActorLocation());
 
 	// Fire Projectile
-	// TODO Fix firing
-	// AIControlledTank->FireProjectile();
+	
+	AimingComponent->FireProjectile(); // TODO Limit firing rate
 }
