@@ -28,6 +28,9 @@ class BATTLETANK_API UTankAimingComponent : public UActorComponent
 	GENERATED_BODY()
 
 public:	
+	// Called when the game starts or when spawned
+	virtual void BeginPlay() override;
+
 	void AimAt(FVector OutHitLocation);
 
 	UFUNCTION(BlueprintCallable, Category = "Setup")
@@ -37,6 +40,8 @@ public:
 	void FireProjectile();
 
 protected:
+	virtual void TickComponent(float DeltaTime, enum ELevelTick TickType, FActorComponentTickFunction *ThisTickFunction) override;
+
 	//Determine Firing State
 	UPROPERTY(BlueprintReadOnly, Category = "State")
 	EFiringState FiringState = EFiringState::Reloading;
