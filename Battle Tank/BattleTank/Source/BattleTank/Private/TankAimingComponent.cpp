@@ -47,7 +47,7 @@ void UTankAimingComponent::TickComponent(float DeltaTime, enum ELevelTick TickTy
 
 bool UTankAimingComponent::IsBarrelMoving() const
 {
-	if (ensure(!Barrel)) { return false; }
+	if (!ensure(Barrel)) { return false; }
 	auto BarrelForward = Barrel->GetForwardVector();
 	return !BarrelForward.Equals(AimDirection, 0.1);
 };
@@ -91,7 +91,7 @@ void UTankAimingComponent::AimAt(FVector OutHitLocation)
 
 void UTankAimingComponent::MoveBarrelTowards(FVector AimDirection)
 {
-	if (!ensure (Barrel || !Turret)) { return; }
+	if (!ensure (Barrel || Turret)) { return; }
 
 	// Work out difference between current barrel rotation and AimDirection
 	auto BarrelRotator = Barrel->GetForwardVector().Rotation();
