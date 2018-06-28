@@ -22,9 +22,12 @@ public:
 	
 	virtual void Tick(float DeltaTime) override;
 
-private:
+protected:
 	//How close can the AI tank get
-	UPROPERTY(EditDefaultsOnly)
-	float AcceptanceRadius = 3000; //TODO, Check Radius is in cm
+	UPROPERTY(EditDefaultsOnly, Category = "Setup")
+	float AcceptanceRadius = 7500; //TODO, Check Radius is in cm
+
+private:
+
 
 };

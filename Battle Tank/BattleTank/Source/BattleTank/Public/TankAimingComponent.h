@@ -39,6 +39,8 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void FireProjectile();
 
+	EFiringState GetFiringState() const;
+
 protected:
 	virtual void TickComponent(float DeltaTime, enum ELevelTick TickType, FActorComponentTickFunction *ThisTickFunction) override;
 
