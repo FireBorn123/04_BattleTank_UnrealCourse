@@ -12,7 +12,8 @@ enum class EFiringState : uint8
 {
 	Reloading,
 	Aiming,
-	Locked
+	Locked,
+	AmmoOut
 };
 
 //Forward Declaration
@@ -36,17 +37,21 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Setup")
 	void AimingInitalize(UTankBarrel* BarrelToSet, UTankTurret* TurretToSet);
 
-	UFUNCTION(BlueprintCallable)
+	UFUNCTION(BlueprintCallable, Category = "Firing")
 	void FireProjectile();
 
 	EFiringState GetFiringState() const;
 
+	UFUNCTION(BlueprintCallable, Category = "Setup")
+	int GetRoundsLeft() const;
+	
 protected:
 	virtual void TickComponent(float DeltaTime, enum ELevelTick TickType, FActorComponentTickFunction *ThisTickFunction) override;
 
 	//Determine Firing State
 	UPROPERTY(BlueprintReadOnly, Category = "State")
 	EFiringState FiringState = EFiringState::Reloading;
+
 
 private:
 	// Sets default values for this component's properties
@@ -71,4 +76,7 @@ private:
 	double LastTimeFired = 0;
 
 	FVector AimDirection;
+
+	UPROPERTY(EditDefaultsOnly, Category  = "Setup")
+	int RoundsLeft = 3;
 };
