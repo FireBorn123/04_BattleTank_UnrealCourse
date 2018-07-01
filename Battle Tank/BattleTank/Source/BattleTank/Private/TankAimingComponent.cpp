@@ -120,7 +120,7 @@ void UTankAimingComponent::MoveBarrelTowards(FVector TankAimDirection)
 	{
 		Turret->RotateTurret(DeltaRotator.Yaw); //1 equals 100% of its max speed //Also works as Barrel and turret point in the same direction
 	}
-	else
+	else // Avoid going the long way around
 	{
 		Turret->RotateTurret(-DeltaRotator.Yaw);
 	}
