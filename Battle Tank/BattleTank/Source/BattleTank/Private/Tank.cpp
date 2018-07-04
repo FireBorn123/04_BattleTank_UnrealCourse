@@ -1,7 +1,8 @@
 // Copyright Trevor Randall
 
-#include "BattleTank.h"
 #include "Tank.h"
+#include "BattleTank.h"
+
 
 
 // Sets default values
