@@ -1,8 +1,9 @@
 // Copyright Trevor Randall
 
+#include "TankMovementComponent.h"
 #include "BattleTank.h"
 #include "TankTracks.h"
-#include "TankMovementComponent.h"
+
 
 void UTankMovementComponent::Initialize(UTankTracks* LeftTrackToSet, UTankTracks* RightTrackToSet)
 {
