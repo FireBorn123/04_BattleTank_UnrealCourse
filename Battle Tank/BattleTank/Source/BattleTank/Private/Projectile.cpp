@@ -1,8 +1,8 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-#include "BattleTank.h"
 #include "Projectile.h"
-
+#include "GameFramework/ProjectileMovementComponent.h"
+#include "BattleTank.h"
 
 // Sets default values
 AProjectile::AProjectile()

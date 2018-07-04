@@ -1,10 +1,12 @@
 // Copyright Trevor Randall
 
+#include "TankAimingComponent.h"
+#include "Engine/World.h"
+#include "Kismet/GameplayStatics.h"
 #include "BattleTank.h"
 #include "TankBarrel.h"
 #include "TankTurret.h"
 #include "Projectile.h"
-#include "TankAimingComponent.h"
 
 
 // Sets default values for this component's properties
