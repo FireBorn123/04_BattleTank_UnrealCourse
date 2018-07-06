@@ -3,7 +3,10 @@
 #include "TankMovementComponent.h"
 #include "BattleTank.h"
 #include "TankTracks.h"
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/Downgrade
 
 void UTankMovementComponent::Initialize(UTankTracks* LeftTrackToSet, UTankTracks* RightTrackToSet)
 {

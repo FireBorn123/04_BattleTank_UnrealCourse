@@ -1,8 +1,13 @@
 // Copyright Trevor Randall
 
 #include "TankAimingComponent.h"
+<<<<<<< HEAD
 #include "Engine/World.h"
 #include "Kismet/GameplayStatics.h"
+=======
+#include "Kismet/GameplayStatics.h"
+#include "Engine/World.h"
+>>>>>>> origin/Downgrade
 #include "BattleTank.h"
 #include "TankBarrel.h"
 #include "TankTurret.h"

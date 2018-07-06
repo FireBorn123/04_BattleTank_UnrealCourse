@@ -3,6 +3,10 @@
 #include "TankBarrel.h"
 #include "Engine/World.h"
 #include "BattleTank.h"
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/Downgrade
 
 
 void UTankBarrel::Elevate(float RelativeSpeed)

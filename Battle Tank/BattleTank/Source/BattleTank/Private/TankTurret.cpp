@@ -3,8 +3,11 @@
 #include "TankTurret.h"
 #include "Engine/World.h"
 #include "BattleTank.h"
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> origin/Downgrade
 
 void UTankTurret::RotateTurret(float RelativeSpeed)
 {
