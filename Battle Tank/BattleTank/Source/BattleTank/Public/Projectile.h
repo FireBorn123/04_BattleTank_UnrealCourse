@@ -2,13 +2,8 @@
 
 #pragma once
 
-<<<<<<< HEAD
-=======
 #include "CoreMinimal.h"
-#include "GameFramework/ProjectileMovementComponent.h"
->>>>>>> origin/Downgrade
 #include "GameFramework/Actor.h"
-#include "GameFramework/ProjectileMovementComponent.h"
 #include "Projectile.generated.h"
 
 UCLASS()

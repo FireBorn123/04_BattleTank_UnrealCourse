@@ -1,12 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-#include "TankTracks.h"
-#include "Engine/World.h"
 #include "BattleTank.h"
-<<<<<<< HEAD
-
-=======
->>>>>>> origin/Downgrade
+#include "TankTracks.h"
 
 UTankTracks::UTankTracks()
 {

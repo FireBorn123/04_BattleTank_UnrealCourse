@@ -9,9 +9,6 @@ public class BattleTankEditorTarget : TargetRules
 	{
 		Type = TargetType.Editor;
         ExtraModuleNames.Add("BattleTank");
-
-        bUseUnityBuild = false;
-        bUsePCHFiles = false;
     }
 
 	//

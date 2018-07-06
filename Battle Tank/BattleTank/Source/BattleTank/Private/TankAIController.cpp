@@ -1,13 +1,8 @@
 // Copyright Trevor Randall
 
-#include "TankAIController.h"
-#include "Engine/World.h"
 #include "BattleTank.h"
 #include "TankAimingComponent.h"
-<<<<<<< HEAD
-
-=======
->>>>>>> origin/Downgrade
+#include "TankAIController.h"
 
 // Depends on movement component via pathfinding system
 

@@ -1,0 +1,8 @@
+diff a/Battle Tank/BattleTank/Source/BattleTank/BattleTank.cpp b/Battle Tank/BattleTank/Source/BattleTank/BattleTank.cpp	(rejected hunks)
+@@ -1,5 +1,6 @@
+ // Fill out your copyright notice in the Description page of Project Settings.
+ 
+ #include "BattleTank.h"
++#include "Modules/ModuleManager.h"
+ 
+ IMPLEMENT_PRIMARY_GAME_MODULE( FDefaultGameModuleImpl, BattleTank, "BattleTank" );

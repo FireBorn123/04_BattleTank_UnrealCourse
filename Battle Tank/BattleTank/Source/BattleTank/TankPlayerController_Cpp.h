@@ -5,8 +5,6 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/PlayerController.h"
-#include "GameFramework/Pawn.h"
-#include "Engine/World.h"
 #include "TankPlayerController_Cpp.generated.h" 
 
 // Forward declarations

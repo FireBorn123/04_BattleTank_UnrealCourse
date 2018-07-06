@@ -1,12 +1,9 @@
 // Copyright Trevor Randall
 
-#include "TankMovementComponent.h"
 #include "BattleTank.h"
 #include "TankTracks.h"
-<<<<<<< HEAD
+#include "TankMovementComponent.h"
 
-=======
->>>>>>> origin/Downgrade
 
 void UTankMovementComponent::Initialize(UTankTracks* LeftTrackToSet, UTankTracks* RightTrackToSet)
 {

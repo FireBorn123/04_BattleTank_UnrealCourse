@@ -1,13 +1,9 @@
 // Copyright Trevor Randall
 
 #include "TankPlayerController_Cpp.h"
-<<<<<<< HEAD
 #include "GameFramework/Pawn.h"
 #include "Public/CollisionQueryParams.h"
 #include "Engine/World.h"
-=======
-#include "Public/CollisionQueryParams.h"
->>>>>>> origin/Downgrade
 #include "BattleTank.h"
 #include "TankAimingComponent.h"
 

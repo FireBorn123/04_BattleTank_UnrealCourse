@@ -1,0 +1,13 @@
+diff a/Battle Tank/BattleTank/Source/BattleTank/TankPlayerController_Cpp.cpp b/Battle Tank/BattleTank/Source/BattleTank/TankPlayerController_Cpp.cpp	(rejected hunks)
+@@ -1,8 +1,10 @@
+ // Copyright Trevor Randall
+ 
++#include "TankPlayerController_Cpp.h"
++#include "Engine/World.h"
+ #include "BattleTank.h"
+ #include "TankAimingComponent.h"
+-#include "TankPlayerController_Cpp.h"
++
+ 
+ void ATankPlayerController_Cpp::BeginPlay()
+ {

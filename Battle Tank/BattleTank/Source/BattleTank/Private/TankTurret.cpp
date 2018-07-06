@@ -1,13 +1,9 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-#include "TankTurret.h"
-#include "Engine/World.h"
 #include "BattleTank.h"
-<<<<<<< HEAD
+#include "TankTurret.h"
 
 
-=======
->>>>>>> origin/Downgrade
 
 void UTankTurret::RotateTurret(float RelativeSpeed)
 {
