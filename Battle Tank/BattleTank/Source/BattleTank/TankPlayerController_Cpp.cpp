@@ -1,4 +1,4 @@
-// Copyright Trevor Randall
+// Copyright Trevor Randall (Commit Check)
 
 #include "TankPlayerController_Cpp.h"
 #include "GameFramework/Pawn.h"
