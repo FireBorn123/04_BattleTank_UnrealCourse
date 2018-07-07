@@ -15,9 +15,6 @@ class BATTLETANK_API AProjectile : public AActor
 	GENERATED_BODY()
 	
 public:	
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
-
 	void LaunchProjectile(float Speed);
 
 protected:
@@ -32,12 +29,16 @@ protected:
 	UPROPERTY(VisibleAnywhere, Category = "Projectile")
 	UParticleSystemComponent* LaunchBlast = nullptr;
 
+	UPROPERTY(VisibleAnywhere, Category = "Projectile")
+	UParticleSystemComponent* ImpactBlast = nullptr;
+
 private:	
 
 	// Sets default values for this actor's properties
 	AProjectile();
 
-	
+	UFUNCTION()
+	void OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit);
 
 
 	

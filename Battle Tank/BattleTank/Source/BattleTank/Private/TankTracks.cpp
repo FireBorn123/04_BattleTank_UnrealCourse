@@ -18,9 +18,6 @@ void UTankTracks::BeginPlay()
 
 void UTankTracks::OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit)
 {
-	// auto Time = FPlatformTime::Seconds();
-	// UE_LOG(LogTemp, Warning, TEXT("%f: TrackOnGround"), Time)
-
 	DriveTrack();
 	ApplySidewaysForce();
 	CurrentThrottle = 0; //Resets throttle
