@@ -25,6 +25,9 @@ AProjectile::AProjectile()
 
 	ProjectileMovement = CreateDefaultSubobject<UProjectileMovementComponent>(FName("Projectile Movement"));
 	ProjectileMovement->bAutoActivate = false;
+
+	ExplosionForce = CreateDefaultSubobject<URadialForceComponent>(FName("Explosion Force"));
+	ExplosionForce->AttachToComponent(RootComponent, FAttachmentTransformRules::KeepRelativeTransform);
 }
 
 // Called when the game starts or when spawned
@@ -34,11 +37,6 @@ void AProjectile::BeginPlay()
 	CollisionMesh->OnComponentHit.AddDynamic(this, &AProjectile::OnHit);
 }
 
-void AProjectile::OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit)
-{
-	LaunchBlast->Deactivate();
-	ImpactBlast->Activate();
-};
 
 void AProjectile::LaunchProjectile(float Speed)
 {
@@ -46,3 +44,9 @@ void AProjectile::LaunchProjectile(float Speed)
 	ProjectileMovement->Activate();
 };
 
+void AProjectile::OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit)
+{
+	LaunchBlast->Deactivate();
+	ImpactBlast->Activate();
+	ExplosionForce->FireImpulse();
+};
