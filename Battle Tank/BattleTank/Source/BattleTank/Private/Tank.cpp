@@ -4,8 +4,6 @@
 #include "GameFramework/Actor.h"
 #include "BattleTank.h"
 
-
-
 // Sets default values
 ATank::ATank()
 {
@@ -30,4 +28,9 @@ float ATank::TakeDamage(float DamageAmount, FDamageEvent const & DamageEvent, AC
 	};
 	
 	return DamageToApply;
+}
+
+float ATank::GetHealthPercent() const
+{
+	return (float)CurrentHealth/ (float)TankStartHealth;
 }
