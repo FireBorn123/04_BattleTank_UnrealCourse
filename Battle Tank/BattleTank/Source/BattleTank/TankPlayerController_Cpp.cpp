@@ -4,7 +4,9 @@
 #include "GameFramework/Pawn.h"
 #include "Public/CollisionQueryParams.h"
 #include "Engine/World.h"
+
 #include "BattleTank.h"
+#include "Tank.h"
 #include "TankAimingComponent.h"
 
 
@@ -21,6 +23,25 @@ void ATankPlayerController_Cpp::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
     AimTowardsCrosshairs();
+}
+
+void ATankPlayerController_Cpp::SetPawn(APawn * InPawn)
+{
+	Super::SetPawn(InPawn);
+	if (InPawn)
+	{
+		auto PosessedTank = Cast<ATank>(InPawn); //Broadcasting Instance
+		if (!ensure(PosessedTank)) { return; }
+
+		// Suscribe our local method to the Tank's death event
+		PosessedTank->OnDeath.AddUniqueDynamic(this, &ATankPlayerController_Cpp::OnPosessedTankDeath);
+		
+	}
+}
+
+void ATankPlayerController_Cpp::OnPosessedTankDeath()
+{
+	UE_LOG(LogTemp, Warning, TEXT("Player Tank Destroyed"))
 }
 
 void ATankPlayerController_Cpp::AimTowardsCrosshairs()
@@ -86,4 +107,6 @@ bool ATankPlayerController_Cpp::GetLookVectorHitLocation(FVector LookDirection, 
 	return false; //line trace didn't succeed
 	;
 }
+
+
 
