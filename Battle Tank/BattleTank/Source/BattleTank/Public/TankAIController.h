@@ -24,14 +24,10 @@ public:
 	
 	virtual void Tick(float DeltaTime) override;
 
-
-
 protected:
 	//How close can the AI tank get
 	UPROPERTY(EditDefaultsOnly, Category = "Setup")
 	float AcceptanceRadius = 7500; //TODO, Check Radius is in cm
-
-
 
 private:
 	virtual void SetPawn(APawn* InPawn) override;

@@ -15,8 +15,6 @@ void ATankAIController::BeginPlay()
 	Super::BeginPlay();
 }
 
-
-
 void ATankAIController::SetPawn(APawn* InPawn)
 {
 	Super::SetPawn(InPawn);
@@ -32,7 +30,7 @@ void ATankAIController::SetPawn(APawn* InPawn)
 
 void ATankAIController::OnPossesedTankDeath()
 {
-	if (GetPawn()) { return; }
+	if (!GetPawn()) { return; }
 	GetPawn()->DetachFromControllerPendingDestroy();
 	UE_LOG(LogTemp, Warning, TEXT("AI Tank Destroyed"))
 };
