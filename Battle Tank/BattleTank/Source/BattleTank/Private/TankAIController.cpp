@@ -32,6 +32,8 @@ void ATankAIController::SetPawn(APawn* InPawn)
 
 void ATankAIController::OnPossesedTankDeath()
 {
+	if (GetPawn()) { return; }
+	GetPawn()->DetachFromControllerPendingDestroy();
 	UE_LOG(LogTemp, Warning, TEXT("AI Tank Destroyed"))
 };
 
@@ -45,6 +47,7 @@ void ATankAIController::Tick(float DeltaTime)
 	auto AIControlledTank = GetPawn();
 
 	if (!ensure(PlayerTank && AIControlledTank)) { return; }
+
 	// Move towards the player
 	MoveToActor(PlayerTank, AcceptanceRadius, true, true, false); 
 	

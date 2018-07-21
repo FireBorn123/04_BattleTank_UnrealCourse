@@ -41,6 +41,7 @@ void ATankPlayerController_Cpp::SetPawn(APawn * InPawn)
 
 void ATankPlayerController_Cpp::OnPosessedTankDeath()
 {
+	StartSpectatingOnly();
 	UE_LOG(LogTemp, Warning, TEXT("Player Tank Destroyed"))
 }
 
