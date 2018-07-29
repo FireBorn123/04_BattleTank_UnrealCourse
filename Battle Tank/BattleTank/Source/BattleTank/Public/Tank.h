@@ -35,5 +35,5 @@ private:
 	int32 TankStartHealth = 100;
 
 	UPROPERTY(VisibleAnywhere, Category = "Health")
-		int32 CurrentHealth; // Initialized in BeginPlay
+	int32 CurrentHealth; // Initialized in BeginPlay
 };

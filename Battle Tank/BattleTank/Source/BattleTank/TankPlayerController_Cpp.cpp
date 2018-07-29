@@ -97,7 +97,7 @@ bool ATankPlayerController_Cpp::GetLookVectorHitLocation(FVector LookDirection, 
 		HitResult,
 		StartLocation, 
 		EndLocation, 
-		ECollisionChannel::ECC_Visibility, 
+		ECollisionChannel::ECC_Camera, 
 		FCollisionQueryParams::DefaultQueryParam,
 		FCollisionResponseParams::DefaultResponseParam))
 	{
