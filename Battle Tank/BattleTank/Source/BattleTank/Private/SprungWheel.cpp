@@ -1,6 +1,7 @@
 // Copyright Trevor Randall
 
 #include "SprungWheel.h"
+#include "Tank.h"
 
 
 // Sets default values
@@ -9,16 +10,18 @@ ASprungWheel::ASprungWheel()
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
+	SuspensionSpring = CreateDefaultSubobject<UPhysicsConstraintComponent>(FName("SuspensionSpring"));
+	SetRootComponent(SuspensionSpring);
+
 	TankMass = CreateDefaultSubobject<UStaticMeshComponent>(FName("TankMass"));
-	SetRootComponent(TankMass);
+	TankMass->AttachToComponent(RootComponent, FAttachmentTransformRules::KeepRelativeTransform);
 	TankMass->SetSimulatePhysics(true);
 
 	TankWheel = CreateDefaultSubobject<UStaticMeshComponent>(FName("TankWheel"));
 	TankWheel->AttachToComponent(RootComponent, FAttachmentTransformRules::KeepRelativeTransform);
 	TankWheel->SetSimulatePhysics(true);
 
-	SuspensionSpring = CreateDefaultSubobject<UPhysicsConstraintComponent>(FName("SuspensionSpring"));
-	SuspensionSpring->AttachToComponent(RootComponent, FAttachmentTransformRules::KeepRelativeTransform);
+
 
 	// Set Component Attachments
 	SuspensionSpring->ComponentName1.ComponentName = FName("TankMass");
@@ -45,6 +48,15 @@ ASprungWheel::ASprungWheel()
 void ASprungWheel::BeginPlay()
 {
 	Super::BeginPlay();
+	
+	if (GetAttachParentActor())
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Not Null"));
+	}
+	else
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Null"));
+	}
 	
 }
 
