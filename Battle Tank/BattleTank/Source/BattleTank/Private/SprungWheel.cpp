@@ -13,10 +13,6 @@ ASprungWheel::ASprungWheel()
 	SuspensionSpring = CreateDefaultSubobject<UPhysicsConstraintComponent>(FName("SuspensionSpring"));
 	SetRootComponent(SuspensionSpring);
 
-	TankMass = CreateDefaultSubobject<UStaticMeshComponent>(FName("TankMass"));
-	TankMass->AttachToComponent(RootComponent, FAttachmentTransformRules::KeepRelativeTransform);
-	TankMass->SetSimulatePhysics(true);
-
 	TankWheel = CreateDefaultSubobject<UStaticMeshComponent>(FName("TankWheel"));
 	TankWheel->AttachToComponent(RootComponent, FAttachmentTransformRules::KeepRelativeTransform);
 	TankWheel->SetSimulatePhysics(true);

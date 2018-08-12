@@ -25,9 +25,6 @@ protected:
 	virtual void Tick(float DeltaTime) override;
 
 	UPROPERTY(VisibleAnywhere, Category = "Spring")
-	UStaticMeshComponent* TankMass = nullptr;
-
-	UPROPERTY(VisibleAnywhere, Category = "Spring")
 	UStaticMeshComponent* TankWheel = nullptr;
 
 	UPROPERTY(VisibleAnywhere, Category = "Spring")
