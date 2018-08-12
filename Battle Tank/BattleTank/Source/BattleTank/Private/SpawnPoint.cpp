@@ -1,6 +1,7 @@
 // Copyright Trevor Randall
 
 #include "SpawnPoint.h"
+#include "Kismet/GameplayStatics.h"
 #include "Engine/World.h"
 
 
@@ -20,9 +21,10 @@ void USpawnPoint::BeginPlay()
 {
 	Super::BeginPlay();
 
-	auto SprungWheel = GetWorld()->SpawnActor<AActor>(SpawnPoint);
-	if (!SprungWheel) { return; }
-	SprungWheel->AttachToComponent(this, FAttachmentTransformRules::KeepRelativeTransform);
+	auto NewActor = GetWorld()->SpawnActorDeferred<AActor>(SpawnPoint, GetComponentTransform());
+	if (!NewActor) { return; }
+	NewActor->AttachToComponent(this, FAttachmentTransformRules::KeepWorldTransform);
+	UGameplayStatics::FinishSpawningActor(NewActor, GetComponentTransform());
 	
 }
 
