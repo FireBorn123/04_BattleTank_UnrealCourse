@@ -1,6 +1,7 @@
 // Copyright Trevor Randall
 
 #include "SprungWheel.h"
+#include "Components/PrimitiveComponent.h"
 #include "Tank.h"
 
 
@@ -40,20 +41,24 @@ ASprungWheel::ASprungWheel()
 
 }
 
+
+
 // Called when the game starts or when spawned
 void ASprungWheel::BeginPlay()
 {
 	Super::BeginPlay();
-	
-	if (GetAttachParentActor())
-	{
-		UE_LOG(LogTemp, Warning, TEXT("Not Null: %s"), *GetAttachParentActor()->GetName());
-	}
-	else
-	{
-		UE_LOG(LogTemp, Warning, TEXT("Null"));
-	}
-	
+
+	SetupConstraints();
+
+}
+
+void ASprungWheel::SetupConstraints()
+{
+	if (!GetAttachParentActor()) { return; }
+	UPrimitiveComponent* BodyRoot = Cast<UPrimitiveComponent>(GetAttachParentActor()->GetRootComponent());
+
+	if (!BodyRoot) { return; }
+	SuspensionSpring->SetConstrainedComponents(BodyRoot, NAME_None, TankWheel, NAME_None);
 }
 
 // Called every frame

@@ -34,6 +34,8 @@ private:
 	// Sets default values for this actor's properties
 	ASprungWheel();
 
+	void SetupConstraints();
+
 	float DefaultSpringStrength = 2500.0;
 
 	float DefaultVelocityStrength = 500.0;
