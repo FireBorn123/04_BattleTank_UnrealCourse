@@ -6,6 +6,7 @@
 #include "GameFramework/Actor.h"
 #include "Components/StaticMeshComponent.h"
 #include "PhysicsEngine/PhysicsConstraintComponent.h"
+#include "Components/SphereComponent.h"
 
 #include "SprungWheel.generated.h"
 
@@ -25,7 +26,14 @@ protected:
 	virtual void Tick(float DeltaTime) override;
 
 	UPROPERTY(VisibleAnywhere, Category = "Spring")
-	UStaticMeshComponent* TankWheel = nullptr;
+	USphereComponent* TankWheel = nullptr;
+
+	UPROPERTY(VisibleAnywhere, Category = "Spring")
+	USphereComponent* TankAxle = nullptr;
+
+	UPROPERTY(VisibleAnywhere, Category = "Spring")
+	UPhysicsConstraintComponent* WheelRotator = nullptr;
+
 
 	UPROPERTY(VisibleAnywhere, Category = "Spring")
 	UPhysicsConstraintComponent* SuspensionSpring = nullptr;

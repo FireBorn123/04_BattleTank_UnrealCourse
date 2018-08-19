@@ -14,15 +14,17 @@ ASprungWheel::ASprungWheel()
 	SuspensionSpring = CreateDefaultSubobject<UPhysicsConstraintComponent>(FName("SuspensionSpring"));
 	SetRootComponent(SuspensionSpring);
 
-	TankWheel = CreateDefaultSubobject<UStaticMeshComponent>(FName("TankWheel"));
-	TankWheel->AttachToComponent(RootComponent, FAttachmentTransformRules::KeepRelativeTransform);
+	TankAxle = CreateDefaultSubobject<USphereComponent>(FName("TankAxle"));
+	TankAxle->AttachToComponent(SuspensionSpring, FAttachmentTransformRules::KeepRelativeTransform);
+	TankAxle->SetSimulatePhysics(true);
+
+	WheelRotator = CreateDefaultSubobject<UPhysicsConstraintComponent>(FName("WheelRotator"));
+	WheelRotator->AttachToComponent(TankAxle, FAttachmentTransformRules::KeepRelativeTransform);
+
+	TankWheel = CreateDefaultSubobject<USphereComponent>(FName("TankWheel"));
+	TankWheel->AttachToComponent(TankAxle, FAttachmentTransformRules::KeepRelativeTransform);
 	TankWheel->SetSimulatePhysics(true);
 
-
-
-	// Set Component Attachments
-	SuspensionSpring->ComponentName1.ComponentName = FName("TankMass");
-	SuspensionSpring->ComponentName2.ComponentName = FName("TankWheel");
 
 	// Set linear limit freedom
 	SuspensionSpring->SetLinearXLimit(ELinearConstraintMotion::LCM_Locked, 0.f);
@@ -37,7 +39,7 @@ ASprungWheel::ASprungWheel()
 	// Set 
 	SuspensionSpring->SetLinearPositionDrive(false, false, true);
 	SuspensionSpring->SetLinearVelocityDrive(false, false, true);
-	SuspensionSpring->SetLinearDriveParams(DefaultSpringStrength, DefaultVelocityStrength, 0.f);
+	SuspensionSpring->SetLinearDriveParams(DefaultSpringStrength, DefaultVelocityStrength, 0.f); 
 
 }
 
@@ -58,7 +60,8 @@ void ASprungWheel::SetupConstraints()
 	UPrimitiveComponent* BodyRoot = Cast<UPrimitiveComponent>(GetAttachParentActor()->GetRootComponent());
 
 	if (!BodyRoot) { return; }
-	SuspensionSpring->SetConstrainedComponents(BodyRoot, NAME_None, TankWheel, NAME_None);
+	SuspensionSpring->SetConstrainedComponents(BodyRoot, NAME_None, TankAxle, NAME_None);
+	WheelRotator->SetConstrainedComponents(TankAxle, NAME_None, TankWheel, NAME_None);
 }
 
 // Called every frame
