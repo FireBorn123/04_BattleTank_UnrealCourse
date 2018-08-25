@@ -6,6 +6,9 @@
 #include "Components/StaticMeshComponent.h"
 #include "TankTracks.generated.h"
 
+//Forward Declarations
+class ASprungWheel;
+
 /**
  * 
  */
@@ -26,15 +29,10 @@ public:
 protected:
 	virtual void BeginPlay() override;
 
-	void ApplySidewaysForce();
-
 private:
 	UTankTracks();
 
-	UFUNCTION()
-	void OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit);
-	
-	void DriveTrack();
+	void DriveTrack(float CurrentThrottle);
 
-	float CurrentThrottle = 0;
+	TArray<ASprungWheel*> GetWheels() const;
 };

@@ -17,6 +17,8 @@ public:
 	// Sets default values for this component's properties
 	USpawnPoint();
 
+	AActor* GetAttachedActor() const;
+
 protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;
@@ -27,5 +29,8 @@ private:
 
 	UPROPERTY(EditDefaultsOnly, Category = "Setup")
 	TSubclassOf<AActor>SpawnPoint;
+
+	UPROPERTY()
+	AActor* SpawnedActor;
 	
 };

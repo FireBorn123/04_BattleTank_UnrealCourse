@@ -16,14 +16,16 @@ class BATTLETANK_API ASprungWheel : public AActor
 	GENERATED_BODY()
 	
 public:	
+	// Called every frame
+	virtual void Tick(float DeltaTime) override;
+
+	void AddDrivingForce(float ForceMagnitude);
+
 
 
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
-
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
 
 	UPROPERTY(VisibleAnywhere, Category = "Spring")
 	USphereComponent* TankWheel = nullptr;
@@ -37,6 +39,8 @@ protected:
 
 	UPROPERTY(VisibleAnywhere, Category = "Spring")
 	UPhysicsConstraintComponent* SuspensionSpring = nullptr;
+
+	
 
 private:
 	// Sets default values for this actor's properties

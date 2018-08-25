@@ -45,6 +45,7 @@ ASprungWheel::ASprungWheel()
 
 
 
+
 // Called when the game starts or when spawned
 void ASprungWheel::BeginPlay()
 {
@@ -71,3 +72,7 @@ void ASprungWheel::Tick(float DeltaTime)
 
 }
 
+void ASprungWheel::AddDrivingForce(float ForceMagnitude)
+{
+	TankWheel->AddForce(TankAxle->GetForwardVector() * ForceMagnitude);
+}
