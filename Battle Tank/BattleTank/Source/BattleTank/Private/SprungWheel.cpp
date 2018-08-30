@@ -2,6 +2,7 @@
 
 #include "SprungWheel.h"
 #include "Components/PrimitiveComponent.h"
+#include "Engine/World.h"
 #include "Tank.h"
 
 
@@ -10,6 +11,7 @@ ASprungWheel::ASprungWheel()
 {
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
+	PrimaryActorTick.TickGroup = TG_PostPhysics;
 
 	SuspensionSpring = CreateDefaultSubobject<UPhysicsConstraintComponent>(FName("SuspensionSpring"));
 	SetRootComponent(SuspensionSpring);
@@ -44,16 +46,18 @@ ASprungWheel::ASprungWheel()
 }
 
 
-
-
 // Called when the game starts or when spawned
 void ASprungWheel::BeginPlay()
 {
 	Super::BeginPlay();
 
-	SetupConstraints();
+	TankWheel->SetNotifyRigidBodyCollision(true);
+	TankWheel->OnComponentHit.AddDynamic(this, &ASprungWheel::OnHit);
 
+	SetupConstraints();
 }
+
+
 
 void ASprungWheel::SetupConstraints()
 {
@@ -70,9 +74,24 @@ void ASprungWheel::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+	if (GetWorld()->TickGroup == TG_PostPhysics)
+	{ 
+		TotalForceMagnitudeThisFrame = 0;
+	}
+	
 }
 
 void ASprungWheel::AddDrivingForce(float ForceMagnitude)
 {
-	TankWheel->AddForce(TankAxle->GetForwardVector() * ForceMagnitude);
+	TotalForceMagnitudeThisFrame += ForceMagnitude;
+}
+
+void ASprungWheel::OnHit(UPrimitiveComponent * HitComponent, AActor * OtherActor, UPrimitiveComponent * OtherComp, FVector NormalImpulse, const FHitResult & Hit)
+{
+	ApplyForce();
+}
+
+void ASprungWheel::ApplyForce()
+{
+	TankWheel->AddForce(TankAxle->GetForwardVector() * TotalForceMagnitudeThisFrame);
 }

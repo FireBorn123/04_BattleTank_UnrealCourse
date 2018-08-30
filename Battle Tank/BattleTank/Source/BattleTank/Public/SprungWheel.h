@@ -36,7 +36,6 @@ protected:
 	UPROPERTY(VisibleAnywhere, Category = "Spring")
 	UPhysicsConstraintComponent* WheelRotator = nullptr;
 
-
 	UPROPERTY(VisibleAnywhere, Category = "Spring")
 	UPhysicsConstraintComponent* SuspensionSpring = nullptr;
 
@@ -45,14 +44,20 @@ protected:
 private:
 	// Sets default values for this actor's properties
 	ASprungWheel();
+	
+	UFUNCTION()
+	void OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit);
 
+	UFUNCTION()
+	void ApplyForce();
+	
 	void SetupConstraints();
 
 	float DefaultSpringStrength = 2500.0;
 
 	float DefaultVelocityStrength = 500.0;
 
-
+	float TotalForceMagnitudeThisFrame = 0;
 	
 	
 };
